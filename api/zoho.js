@@ -11,7 +11,16 @@ export default async function handler(req, res) {
     orgId:        "873562075",
   };
 
-  // Helper: get token (with retry once)
+  // HARDCODED warehouse IDs (read directly from Zoho item detail)
+  const WH_IDS = {
+    pragati: "5861243000000122010",
+    amazon:  "5861243000000180119",
+    noon:    "5861243000001180091",
+    micro:   "5861243000000118147",
+    // damage:   "5861243000000118175"  — excluded
+    // supermall:"5861243000015585013"  — excluded
+  };
+
   async function getToken() {
     const r = await fetch(
       `https://accounts.zoho.com/oauth/v2/token?refresh_token=${CFG.refreshToken}&client_id=${CFG.clientId}&client_secret=${CFG.clientSecret}&grant_type=refresh_token`,
@@ -22,60 +31,17 @@ export default async function handler(req, res) {
   }
 
   try {
-    const action = req.query.action || "items";
-    const page   = parseInt(req.query.page) || 1;
-
     const token = await getToken();
     if (!token) return res.status(401).json({ error: "Token failed" });
 
-    // ── debug_warehouses: just list warehouses ────────────────────────────────
-    if (action === "debug_warehouses") {
-      const r = await fetch(
-        `https://www.zohoapis.com/books/v3/settings/warehouses?organization_id=${CFG.orgId}`,
-        { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
-      );
-      return res.status(200).json(await r.json());
-    }
+    const action = req.query.action || "items";
+    const page   = parseInt(req.query.page) || 1;
 
-    // ── debug_item: get ONE item's full detail ────────────────────────────────
-    if (action === "debug_item") {
-      // First get one item id from list
-      const lr = await fetch(
-        `https://www.zohoapis.com/books/v3/items?organization_id=${CFG.orgId}&page=1&per_page=1`,
-        { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
-      );
-      const ld = await lr.json();
-      const firstId = ld.items?.[0]?.item_id;
-      if (!firstId) return res.status(200).json({ error: "No items found", raw: ld });
-
-      // Now get that item's full record
-      const dr = await fetch(
-        `https://www.zohoapis.com/books/v3/items/${firstId}?organization_id=${CFG.orgId}`,
-        { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
-      );
-      const dd = await dr.json();
-      return res.status(200).json({
-        item_id: firstId,
-        all_keys: dd.item ? Object.keys(dd.item) : [],
-        warehouses_field: dd.item?.warehouses ?? "NOT PRESENT",
-        stock_on_hand: dd.item?.stock_on_hand,
-        full_item: dd.item
-      });
-    }
-
-    // ── warehouses: get warehouse list ────────────────────────────────────────
-    if (action === "warehouses") {
-      const r = await fetch(
-        `https://www.zohoapis.com/books/v3/settings/warehouses?organization_id=${CFG.orgId}`,
-        { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
-      );
-      return res.status(200).json(await r.json());
-    }
-
-    // ── warehouse_items: items filtered by warehouse ───────────────────────────
-    if (action === "warehouse_items") {
-      const whId = req.query.warehouse_id;
-      if (!whId) return res.status(400).json({ error: "warehouse_id required" });
+    // ── items filtered by a specific warehouse ────────────────────────────────
+    // When warehouse_id is passed, Zoho returns stock_on_hand for THAT warehouse
+    if (action === "wh") {
+      const whId = WH_IDS[req.query.wh];
+      if (!whId) return res.status(400).json({ error: "Unknown warehouse: " + req.query.wh });
       const r = await fetch(
         `https://www.zohoapis.com/books/v3/items?organization_id=${CFG.orgId}&page=${page}&per_page=200&warehouse_id=${whId}`,
         { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
@@ -83,7 +49,34 @@ export default async function handler(req, res) {
       return res.status(200).json(await r.json());
     }
 
-    // ── default: paginated items list ─────────────────────────────────────────
+    // ── debug: return raw first item so we can verify fields ──────────────────
+    if (action === "debug_item") {
+      const r = await fetch(
+        `https://www.zohoapis.com/books/v3/items?organization_id=${CFG.orgId}&page=1&per_page=1`,
+        { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
+      );
+      const d = await r.json();
+      const id = d.items?.[0]?.item_id;
+      if (!id) return res.status(200).json({ error: "no items", raw: d });
+      const dr = await fetch(
+        `https://www.zohoapis.com/books/v3/items/${id}?organization_id=${CFG.orgId}`,
+        { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
+      );
+      return res.status(200).json(await dr.json());
+    }
+
+    // ── debug: first item filtered by PRAGATI warehouse ───────────────────────
+    if (action === "debug_wh") {
+      const whKey = req.query.wh || "pragati";
+      const whId = WH_IDS[whKey];
+      const r = await fetch(
+        `https://www.zohoapis.com/books/v3/items?organization_id=${CFG.orgId}&page=1&per_page=3&warehouse_id=${whId}`,
+        { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
+      );
+      return res.status(200).json(await r.json());
+    }
+
+    // ── default: all items list ───────────────────────────────────────────────
     const r = await fetch(
       `https://www.zohoapis.com/books/v3/items?organization_id=${CFG.orgId}&page=${page}&per_page=200`,
       { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
