@@ -12,7 +12,6 @@ export default async function handler(req, res) {
   };
 
   try {
-    // 1. Get access token
     const tokenRes = await fetch(
       `https://accounts.zoho.com/oauth/v2/token?refresh_token=${CFG.refreshToken}&client_id=${CFG.clientId}&client_secret=${CFG.clientSecret}&grant_type=refresh_token`,
       { method: "POST" }
@@ -24,47 +23,80 @@ export default async function handler(req, res) {
     const action = req.query.action || "items";
     const page   = parseInt(req.query.page) || 1;
 
-    // ── Action: get list of all warehouses ────────────────────────────────────
+    // Get warehouse list
     if (action === "warehouses") {
       const r = await fetch(
         `https://www.zohoapis.com/books/v3/settings/warehouses?organization_id=${CFG.orgId}`,
         { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
       );
-      const d = await r.json();
-      return res.status(200).json(d);
+      return res.status(200).json(await r.json());
     }
 
-    // ── Action: get items filtered by a specific warehouse_id ─────────────────
+    // Get single item full detail (includes warehouses array)
+    if (action === "item_detail") {
+      const itemId = req.query.item_id;
+      const r = await fetch(
+        `https://www.zohoapis.com/books/v3/items/${itemId}?organization_id=${CFG.orgId}`,
+        { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
+      );
+      return res.status(200).json(await r.json());
+    }
+
+    // Get items filtered by warehouse
     if (action === "warehouse_items") {
       const warehouseId = req.query.warehouse_id;
-      if (!warehouseId) return res.status(400).json({ error: "warehouse_id required" });
       const r = await fetch(
         `https://www.zohoapis.com/books/v3/items?organization_id=${CFG.orgId}&page=${page}&per_page=200&warehouse_id=${warehouseId}`,
         { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
       );
-      const d = await r.json();
-      return res.status(200).json(d);
+      return res.status(200).json(await r.json());
     }
 
-    // ── Action: debug — returns first raw item so we can inspect fields ────────
+    // DEBUG: returns warehouses + first item raw + first item full detail
     if (action === "debug") {
-      const r = await fetch(
+      // Get warehouses
+      const wr = await fetch(
+        `https://www.zohoapis.com/books/v3/settings/warehouses?organization_id=${CFG.orgId}`,
+        { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
+      );
+      const wData = await wr.json();
+
+      // Get first item from list
+      const ir = await fetch(
         `https://www.zohoapis.com/books/v3/items?organization_id=${CFG.orgId}&page=1&per_page=1`,
         { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
       );
-      const d = await r.json();
-      return res.status(200).json({ raw_first_item: d.items?.[0] || null, page_context: d.page_context });
+      const iData = await ir.json();
+      const firstItem = iData.items?.[0];
+
+      // Get that item's full detail
+      let itemDetail = null;
+      if (firstItem?.item_id) {
+        const dr = await fetch(
+          `https://www.zohoapis.com/books/v3/items/${firstItem.item_id}?organization_id=${CFG.orgId}`,
+          { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
+        );
+        const dd = await dr.json();
+        itemDetail = dd.item;
+      }
+
+      return res.status(200).json({
+        warehouses: wData.warehouses || [],
+        first_item_list: firstItem,
+        first_item_detail: itemDetail,
+        item_detail_keys: itemDetail ? Object.keys(itemDetail) : [],
+        warehouses_in_detail: itemDetail?.warehouses || "NOT FOUND"
+      });
     }
 
-    // ── Default: paginated items list ─────────────────────────────────────────
+    // Default: paginated items
     const r = await fetch(
       `https://www.zohoapis.com/books/v3/items?organization_id=${CFG.orgId}&page=${page}&per_page=200`,
       { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
     );
-    const d = await r.json();
-    return res.status(200).json(d);
+    return res.status(200).json(await r.json());
 
   } catch (e) {
-    return res.status(500).json({ error: "Server error", detail: e.message });
+    return res.status(500).json({ error: e.message });
   }
 }
