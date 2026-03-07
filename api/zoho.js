@@ -11,23 +11,24 @@ export default async function handler(req, res) {
     orgId:        "873562075",
   };
 
-  const action = req.query.action;
-
   try {
-    // Step 1 — Get access token
+    // Get fresh access token
     const tokenRes = await fetch(
       `https://accounts.zoho.com/oauth/v2/token?refresh_token=${CFG.refreshToken}&client_id=${CFG.clientId}&client_secret=${CFG.clientSecret}&grant_type=refresh_token`,
       { method: "POST" }
     );
     const tokenData = await tokenRes.json();
     const token = tokenData.access_token;
-    if (!token) return res.status(401).json({ error: "Could not get Zoho token", detail: tokenData });
+    if (!token) {
+      return res.status(401).json({ error: "Token failed", detail: tokenData });
+    }
 
-    // Step 2 — Fetch items page
-    const page = req.query.page || 1;
+    const page = parseInt(req.query.page) || 1;
+
+    // Fetch items with warehouse stock included
     const apiRes = await fetch(
-      `https://www.zohoapis.com/books/v3/items?organization_id=${CFG.orgId}&page=${page}&per_page=200`,
-      { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
+      `https://www.zohoapis.com/books/v3/items?organization_id=${CFG.orgId}&page=${page}&per_page=200&filter_by=item.All`,
+      { headers: { "Authorization": `Zoho-oauthtoken ${token}` } }
     );
     const data = await apiRes.json();
     return res.status(200).json(data);
