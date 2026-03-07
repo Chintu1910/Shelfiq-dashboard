@@ -25,9 +25,9 @@ export default async function handler(req, res) {
 
     const page = parseInt(req.query.page) || 1;
 
-    // Fetch items with warehouse stock included
+    // Fetch items — no filter_by, just page + per_page
     const apiRes = await fetch(
-      `https://www.zohoapis.com/books/v3/items?organization_id=${CFG.orgId}&page=${page}&per_page=200&filter_by=item.All`,
+      `https://www.zohoapis.com/books/v3/items?organization_id=${CFG.orgId}&page=${page}&per_page=200`,
       { headers: { "Authorization": `Zoho-oauthtoken ${token}` } }
     );
     const data = await apiRes.json();
