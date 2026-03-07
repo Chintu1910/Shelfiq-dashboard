@@ -22,7 +22,7 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'J
 .header-inner{max-width:1500px;margin:0 auto;height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--teal);white-space:nowrap}
 .logo span{color:var(--text2);font-weight:400}
-.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.header-right{display:flex;align-items:center;gap:8px}
 .sync-btn{background:var(--teal-dim);border:1px solid var(--teal);color:var(--teal);padding:4px 14px;border-radius:20px;font-size:11px;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all .2s;white-space:nowrap}
 .sync-btn:hover{background:var(--teal);color:#050d1a}
 .sync-btn:disabled{opacity:.4;cursor:not-allowed}
@@ -42,34 +42,46 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:'J
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px}
-.card-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.card-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
 .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px}
 .stat-label{font-size:10px;color:var(--text2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.8px}
 .stat-value{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;margin-bottom:3px}
 .stat-sub{font-size:11px;color:var(--text2)}
 .up{color:var(--teal)!important}.down{color:var(--red)!important}
+/* TABLE */
 .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-table{width:100%;border-collapse:collapse;font-size:12px;min-width:700px}
-th{text-align:left;padding:9px 12px;color:var(--text2);font-size:10px;text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid var(--border);white-space:nowrap;font-family:'Syne',sans-serif}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:800px}
+th{text-align:left;padding:10px 12px;color:var(--text2);font-size:10px;text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid var(--border);white-space:nowrap;font-family:'Syne',sans-serif;background:var(--surface);cursor:pointer;user-select:none}
+th:hover{color:var(--text)}
+th.sort-active{color:var(--teal)}
+th .sort-icon{margin-left:4px;opacity:.5;font-size:9px}
+th.sort-active .sort-icon{opacity:1;color:var(--teal)}
 td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:var(--surface2)}
-.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:5px;font-size:10px;font-weight:500;white-space:nowrap}
+/* BADGES */
+.badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:5px;font-size:10px;font-weight:500;white-space:nowrap}
 .b-green{background:var(--teal-dim);color:var(--teal);border:1px solid rgba(0,229,195,.3)}
 .b-red{background:var(--red-dim);color:var(--red);border:1px solid rgba(255,71,87,.3)}
 .b-amber{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(255,176,32,.3)}
 .b-blue{background:var(--blue-dim);color:var(--blue);border:1px solid rgba(77,159,255,.3)}
-.wh-cell{display:flex;flex-wrap:wrap;gap:4px}
-.wh-pill{display:inline-flex;align-items:center;padding:2px 7px;border-radius:4px;font-size:10px;white-space:nowrap}
+/* WAREHOUSE PILLS */
+.wh-cell{display:flex;flex-wrap:wrap;gap:3px}
+.wh-pill{display:inline-flex;align-items:center;padding:2px 6px;border-radius:4px;font-size:10px;white-space:nowrap}
 .wh-pragati{background:rgba(0,229,195,.1);color:var(--teal);border:1px solid rgba(0,229,195,.25)}
 .wh-amazon{background:rgba(255,153,0,.12);color:#ff9900;border:1px solid rgba(255,153,0,.25)}
 .wh-noon{background:rgba(255,237,0,.08);color:#d4c200;border:1px solid rgba(255,237,0,.2)}
 .wh-micro{background:rgba(77,159,255,.1);color:var(--blue);border:1px solid rgba(77,159,255,.25)}
 .wh-damage{background:rgba(255,71,87,.1);color:var(--red);border:1px solid rgba(255,71,87,.25)}
-.filters-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.search-box{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:7px 12px;color:var(--text);font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;transition:border-color .2s;min-width:200px;flex:1;max-width:300px}
-.search-box:focus{border-color:var(--teal)}
-.search-box::placeholder{color:var(--text3)}
+/* FILTERS */
+.filters-section{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.filter-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.filter-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;width:60px;flex-shrink:0}
+.search-wrap{position:relative;flex:1;min-width:200px;max-width:400px}
+.search-wrap input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 12px 8px 32px;color:var(--text);font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;transition:border-color .2s}
+.search-wrap input:focus{border-color:var(--teal)}
+.search-wrap input::placeholder{color:var(--text3)}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:13px;pointer-events:none}
 .fbtn{padding:6px 12px;border-radius:6px;font-size:11px;cursor:pointer;border:1px solid var(--border);background:var(--surface2);color:var(--text2);font-family:'JetBrains Mono',monospace;transition:all .15s;user-select:none;white-space:nowrap}
 .fbtn:hover{border-color:var(--border2);color:var(--text)}
 .fbtn.on{background:var(--teal-dim);border-color:var(--teal);color:var(--teal)}
@@ -78,16 +90,20 @@ tr:hover td{background:var(--surface2)}
 .fbtn.on-blue{background:var(--blue-dim);border-color:var(--blue);color:var(--blue)}
 .fbtn.on-amazon{background:rgba(255,153,0,.12);border-color:rgba(255,153,0,.5);color:#ff9900}
 .fbtn.on-noon{background:rgba(255,237,0,.08);border-color:rgba(255,237,0,.4);color:#d4c200}
-.pagination{display:flex;align-items:center;gap:6px;justify-content:center;padding-top:12px;flex-wrap:wrap}
-.page-btn{padding:5px 11px;border-radius:6px;font-size:11px;cursor:pointer;border:1px solid var(--border);background:var(--surface2);color:var(--text2);font-family:'JetBrains Mono',monospace;transition:all .15s}
-.page-btn:hover{border-color:var(--teal);color:var(--teal)}
-.page-btn.active{background:var(--teal-dim);border-color:var(--teal);color:var(--teal)}
-.page-btn:disabled{opacity:.3;cursor:not-allowed}
+.sort-select{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text2);font-size:11px;font-family:'JetBrains Mono',monospace;outline:none;cursor:pointer;transition:border-color .2s}
+.sort-select:focus,.sort-select:hover{border-color:var(--teal);color:var(--text)}
+/* PAGINATION */
+.pagination{display:flex;align-items:center;gap:6px;justify-content:center;padding-top:14px;flex-wrap:wrap;border-top:1px solid var(--border);margin-top:4px}
+.page-btn{padding:5px 11px;border-radius:6px;font-size:11px;cursor:pointer;border:1px solid var(--border);background:var(--surface2);color:var(--text2);font-family:'JetBrains Mono',monospace;transition:all .15s;min-width:34px;text-align:center}
+.page-btn:hover:not(:disabled){border-color:var(--teal);color:var(--teal)}
+.page-btn.active{background:var(--teal-dim);border-color:var(--teal);color:var(--teal);font-weight:700}
+.page-btn:disabled{opacity:.25;cursor:not-allowed}
 .page-info{font-size:11px;color:var(--text2)}
+/* PROGRESS */
 .progress-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:10px}
-.progress-fill{height:100%;background:var(--teal);border-radius:3px;transition:width .4s}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--blue));border-radius:3px;transition:width .4s}
 .sh{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:4px}
-.ss{font-size:12px;color:var(--text2);margin-bottom:8px}
+.ss{font-size:12px;color:var(--text2);margin-bottom:6px}
 .sbar-wrap{display:flex;align-items:center;gap:6px}
 .sbar{height:4px;width:50px;background:var(--border);border-radius:2px;overflow:hidden;flex-shrink:0}
 .sbar-fill{height:100%;border-radius:2px}
@@ -109,49 +125,86 @@ tr:hover td{background:var(--surface2)}
 .qbtns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .qbtn{padding:7px 12px;border:1px solid var(--border);background:var(--surface2);border-radius:20px;font-size:11px;color:var(--text2);cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all .15s}
 .qbtn:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-dim)}
-.empty{text-align:center;padding:36px 20px;color:var(--text2);font-size:13px}
+.empty{text-align:center;padding:40px 20px;color:var(--text2);font-size:13px}
 .alert-bar{background:var(--red-dim);border:1px solid rgba(255,71,87,.35);border-radius:8px;padding:12px 16px;font-size:12px;display:flex;gap:10px}
-@media(max-width:900px){.grid-5{grid-template-columns:repeat(3,1fr)}.grid-4{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}.main{padding:12px}.stat-value{font-size:20px}.sh{font-size:17px}}
-@media(max-width:500px){.grid-5,.grid-4{grid-template-columns:1fr 1fr}}
+.results-info{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:11px;color:var(--text2);padding:4px 0}
+@media(max-width:1000px){.grid-5{grid-template-columns:repeat(3,1fr)}.grid-4{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}.main{padding:12px}}
+@media(max-width:600px){.grid-5,.grid-4{grid-template-columns:1fr 1fr}.stat-value{font-size:20px}.sh{font-size:17px}}
 </style>
 </head>
 <body>
 <div id="app"></div>
 <script>
-// ── WAREHOUSE RULES ───────────────────────────────────────────────────────────
-var WH_RULES={
+// ── WAREHOUSE CLASSIFICATION ───────────────────────────────────────────────────
+var WH_KEYS={
   pragati:  ["pragati","praga"],
   amazon:   ["amazon","fba"],
   noon:     ["noon","fbn"],
   micro:    ["microless","fbm","micro"],
   damage:   ["renewed","wh-d","damage","damaged","wh_d"],
-  supermall:["supermall","super mall","reserved"]
+  supermall:["supermall","super mall","reserved","supermall"]
 };
 function classifyWH(name){
   if(!name)return"other";
   var n=name.toLowerCase();
-  for(var k in WH_RULES){var kws=WH_RULES[k];for(var i=0;i<kws.length;i++){if(n.indexOf(kws[i])!==-1)return k;}}
+  for(var k in WH_KEYS){
+    for(var i=0;i<WH_KEYS[k].length;i++){
+      if(n.indexOf(WH_KEYS[k][i])!==-1)return k;
+    }
+  }
   return"other";
 }
 function processItem(raw){
   var wh={pragati:0,amazon:0,noon:0,micro:0,damage:0,other:0};
-  var whList=raw.warehouses||[];
+  // Try multiple warehouse data fields Zoho might return
+  var whList=raw.warehouses||raw.warehouse_list||[];
   whList.forEach(function(w){
-    var cls=classifyWH(w.warehouse_name);
+    var wname=w.warehouse_name||w.name||"";
+    var cls=classifyWH(wname);
     if(cls==="supermall")return;
-    var qty=w.warehouse_stock_on_hand||0;
-    if(wh[cls]!==undefined)wh[cls]+=qty; else wh.other+=qty;
+    var qty=w.warehouse_stock_on_hand||w.stock_on_hand||w.quantity_on_hand||0;
+    if(wh[cls]!==undefined)wh[cls]+=qty;
+    else wh.other+=qty;
   });
-  var sellable=wh.pragati+wh.amazon+wh.noon+wh.micro;
-  if(whList.length===0)sellable=raw.stock_on_hand||0;
-  return{id:raw.item_id,name:raw.name||"",sku:raw.sku||raw.item_id||"",rate:raw.rate||0,
-    sellable:sellable,damage:wh.damage,pragati:wh.pragati,amazon:wh.amazon,noon:wh.noon,micro:wh.micro};
+  var sellable=wh.pragati+wh.amazon+wh.noon+wh.micro+wh.other;
+  // Fallback to total stock if no warehouse breakdown
+  if(whList.length===0){
+    sellable=raw.stock_on_hand||raw.available_stock||0;
+  }
+  return{
+    id:raw.item_id||raw.id||"",
+    name:raw.name||"",
+    sku:raw.sku||raw.cf_sku||"",
+    rate:parseFloat(raw.rate||0),
+    sellable:Math.round(sellable),
+    damage:Math.round(wh.damage),
+    pragati:Math.round(wh.pragati),
+    amazon:Math.round(wh.amazon),
+    noon:Math.round(wh.noon),
+    micro:Math.round(wh.micro),
+    other:Math.round(wh.other),
+    hasWH:whList.length>0
+  };
 }
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
-var S={tab:"overview",items:[],loading:false,loaded:false,error:null,lastSync:null,progress:0,
-  search:"",whFilter:"all",statusFilter:"all",page:1,perPage:50};
+var S={
+  tab:"overview",
+  items:[],
+  loading:false,loaded:false,error:null,lastSync:null,
+  progress:0,progressMsg:"",
+  // filters
+  search:"",
+  whFilter:"all",
+  statusFilter:"all",
+  // sort: field + direction
+  sortBy:"name",
+  sortDir:"asc",
+  // pagination
+  page:1,perPage:50
+};
 
+// ── DEMO DATA ─────────────────────────────────────────────────────────────────
 var DEMO_BB=[
   {sku:"NVD-RTX4070",name:"NVIDIA RTX 4070 GPU",az:true,nn:false,azP:2199,nnP:2350,lost:"14:32 today",lostOn:"Noon"},
   {sku:"APL-IP15-128",name:"iPhone 15 128GB Black",az:false,nn:true,azP:3299,nnP:3199,lost:"09:15 today",lostOn:"Amazon UAE"},
@@ -166,64 +219,133 @@ var REV=[{m:"Oct",az:42,nn:28},{m:"Nov",az:48,nn:31},{m:"Dec",az:61,nn:44},{m:"J
 // ── SYNC ──────────────────────────────────────────────────────────────────────
 async function syncZoho(){
   S.loading=true;S.error=null;S.progress=0;S.items=[];S.loaded=false;
+  S.progressMsg="Connecting to Zoho Books...";
   render();
-  try{
-    // Page 1 first to get total
-    var r1=await fetch("/api/zoho?page=1");
-    var d1=await r1.json();
-    if(!d1||d1.code!==0){
-      S.loading=false;
-      S.error="Zoho error: "+(d1&&d1.message?d1.message:JSON.stringify(d1));
-      render();return;
-    }
-    var ctx=d1.page_context||{};
-    var total=ctx.total||d1.items.length;
-    var perPage=200;
-    var totalPages=Math.ceil(total/perPage);
-    var all=(d1.items||[]).map(processItem);
-    S.progress=Math.round((1/totalPages)*100);render();
 
-    for(var p=2;p<=totalPages;p++){
-      var r=await fetch("/api/zoho?page="+p);
+  try{
+    var all=[];
+    var page=1;
+    var hasMore=true;
+
+    while(hasMore){
+      S.progressMsg="Loading page "+page+"... ("+all.length+" products so far)";
+      S.progress=Math.min(95, all.length>0 ? Math.round((all.length/(all.length+200))*90) : 5);
+      render();
+
+      var r=await fetch("/api/zoho?page="+page);
+      if(!r.ok){
+        S.loading=false;
+        S.error="Server error ("+r.status+"). Make sure api/zoho.js is deployed on Vercel.";
+        render();return;
+      }
       var d=await r.json();
-      if(d&&d.items)all=all.concat(d.items.map(processItem));
-      S.progress=Math.round((p/totalPages)*100);render();
+
+      if(d.error){
+        S.loading=false;
+        S.error="Zoho error: "+d.error+(d.detail?" — "+JSON.stringify(d.detail):"");
+        render();return;
+      }
+      if(d.code!==0){
+        S.loading=false;
+        S.error="Zoho returned code "+(d.code||"unknown")+": "+(d.message||JSON.stringify(d));
+        render();return;
+      }
+
+      var pageItems=d.items||[];
+      all=all.concat(pageItems.map(processItem));
+
+      // Check if more pages exist
+      var ctx=d.page_context||{};
+      hasMore=ctx.has_more_page===true;
+      page++;
+
+      // Safety limit to avoid infinite loop
+      if(page>50)break;
     }
-    S.items=all;S.loaded=true;S.loading=false;
+
+    S.progress=100;
+    S.progressMsg="Loaded "+all.length+" products!";
+    S.items=all;
+    S.loaded=true;
+    S.loading=false;
     S.lastSync=new Date().toLocaleTimeString("en-AE",{hour:"2-digit",minute:"2-digit"});
-    S.page=1;render();
+    S.page=1;
+    render();
+
   }catch(e){
-    S.loading=false;S.error="Connection error: "+e.message;render();
+    S.loading=false;
+    S.error="Connection error: "+e.message+". Make sure you are on shelfiq-dashboard.vercel.app";
+    render();
   }
+}
+
+// ── FILTER + SORT + PAGINATE ──────────────────────────────────────────────────
+function getFiltered(){
+  var items=S.items;
+  // Search
+  if(S.search.trim()){
+    var q=S.search.toLowerCase();
+    items=items.filter(function(i){
+      return i.name.toLowerCase().indexOf(q)!==-1||i.sku.toLowerCase().indexOf(q)!==-1;
+    });
+  }
+  // Warehouse filter
+  if(S.whFilter!=="all"){
+    items=items.filter(function(i){return i[S.whFilter]>0});
+  }
+  // Status filter
+  if(S.statusFilter==="out")  items=items.filter(function(i){return i.sellable<=0});
+  else if(S.statusFilter==="low") items=items.filter(function(i){return i.sellable>0&&i.sellable<5});
+  else if(S.statusFilter==="good") items=items.filter(function(i){return i.sellable>=5});
+
+  // Sort
+  items=items.slice().sort(function(a,b){
+    var v;
+    if(S.sortBy==="name") v=a.name.localeCompare(b.name);
+    else if(S.sortBy==="sku") v=a.sku.localeCompare(b.sku);
+    else if(S.sortBy==="sellable") v=a.sellable-b.sellable;
+    else if(S.sortBy==="rate") v=a.rate-b.rate;
+    else if(S.sortBy==="damage") v=a.damage-b.damage;
+    else v=a.name.localeCompare(b.name);
+    return S.sortDir==="asc"?v:-v;
+  });
+  return items;
 }
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
-function getFiltered(){
-  var items=S.items;
-  if(S.search.trim()){var q=S.search.toLowerCase();items=items.filter(function(i){return i.name.toLowerCase().indexOf(q)!==-1||i.sku.toLowerCase().indexOf(q)!==-1});}
-  if(S.whFilter!=="all")items=items.filter(function(i){return i[S.whFilter]>0});
-  if(S.statusFilter==="out")items=items.filter(function(i){return i.sellable<=0});
-  else if(S.statusFilter==="low")items=items.filter(function(i){return i.sellable>0&&i.sellable<5});
-  else if(S.statusFilter==="good")items=items.filter(function(i){return i.sellable>=5});
-  return items;
-}
+
 function stockBadge(q){
-  if(q<=0)return'<span class="badge b-red">Out of Stock</span>';
-  if(q<5)return'<span class="badge b-amber">Low: '+q+'</span>';
-  if(q<20)return'<span class="badge b-blue">'+q+' units</span>';
+  if(q<=0) return'<span class="badge b-red">Out of Stock</span>';
+  if(q<5)  return'<span class="badge b-amber">Low: '+q+'</span>';
+  if(q<20) return'<span class="badge b-blue">'+q+' units</span>';
   return'<span class="badge b-green">'+q+' units</span>';
 }
+
 function whPills(i){
   var p="";
-  if(i.pragati>0)p+='<span class="wh-pill wh-pragati">PRAGATI '+i.pragati+'</span>';
-  if(i.amazon>0)p+='<span class="wh-pill wh-amazon">FBA '+i.amazon+'</span>';
-  if(i.noon>0)p+='<span class="wh-pill wh-noon">FBN '+i.noon+'</span>';
-  if(i.micro>0)p+='<span class="wh-pill wh-micro">FBM '+i.micro+'</span>';
-  if(i.damage>0)p+='<span class="wh-pill wh-damage">DMG '+i.damage+'</span>';
-  if(!p)p='<span style="color:var(--text3);font-size:11px">–</span>';
+  if(i.pragati>0) p+='<span class="wh-pill wh-pragati">PRAGATI '+i.pragati+'</span>';
+  if(i.amazon>0)  p+='<span class="wh-pill wh-amazon">FBA '+i.amazon+'</span>';
+  if(i.noon>0)    p+='<span class="wh-pill wh-noon">FBN '+i.noon+'</span>';
+  if(i.micro>0)   p+='<span class="wh-pill wh-micro">FBM '+i.micro+'</span>';
+  if(i.damage>0)  p+='<span class="wh-pill wh-damage">DMG '+i.damage+'</span>';
+  if(!p){
+    if(i.sellable>0) p='<span style="color:var(--text2);font-size:11px">'+i.sellable+' (total)</span>';
+    else p='<span style="color:var(--text3);font-size:11px">–</span>';
+  }
   return'<div class="wh-cell">'+p+'</div>';
 }
+
+function sortIcon(field){
+  if(S.sortBy!==field)return'<span class="sort-icon">⇅</span>';
+  return'<span class="sort-icon">'+(S.sortDir==="asc"?"↑":"↓")+'</span>';
+}
+
+function thSort(field,label){
+  var active=S.sortBy===field?" sort-active":"";
+  return'<th class="'+active+'" onclick="setSort(\''+field+'\')" title="Click to sort by '+label+'">'+label+sortIcon(field)+'</th>';
+}
+
 function lineChart(data,k1,k2,c1,c2){
   var W=500,H=155,PL=34,PR=8,PT=8,PB=24,cw=W-PL-PR,ch=H-PT-PB;
   var allV=[];data.forEach(function(d){allV.push(d[k1],d[k2])});
@@ -256,39 +378,45 @@ function renderOverview(){
   var nnPct=Math.round(DEMO_BB.filter(function(b){return b.nn}).length/DEMO_BB.length*100);
   var out=0,low=0,dmg=0,whT={pragati:0,amazon:0,noon:0,micro:0};
   if(S.loaded){S.items.forEach(function(i){if(i.sellable<=0)out++;else if(i.sellable<5)low++;dmg+=i.damage;whT.pragati+=i.pragati;whT.amazon+=i.amazon;whT.noon+=i.noon;whT.micro+=i.micro;});}
-  var h='<div class="page"><div><div class="sh">Good morning \u2600\uFE0F</div><div class="ss">Seller intelligence summary \u2014 '+esc(today)+'</div></div>';
+  var h='<div class="page"><div><div class="sh">Good morning ☀️</div><div class="ss">Seller intelligence summary — '+esc(today)+'</div></div>';
+
   if(S.loading){
-    h+='<div style="background:var(--teal-dim);border:1px solid rgba(0,229,195,.3);border-radius:8px;padding:14px 18px">';
-    h+='<div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--teal);margin-bottom:8px"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div><span>Loading your Zoho Books inventory... '+S.progress+'% complete</span></div>';
+    h+='<div style="background:var(--teal-dim);border:1px solid rgba(0,229,195,.3);border-radius:8px;padding:16px 18px">';
+    h+='<div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--teal);margin-bottom:10px"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div><span>'+esc(S.progressMsg)+'</span></div>';
     h+='<div class="progress-bar"><div class="progress-fill" style="width:'+S.progress+'%"></div></div></div>';
   } else if(S.error){
-    h+='<div style="background:var(--red-dim);border:1px solid rgba(255,71,87,.35);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--red)">\u26a0 '+esc(S.error)+'<br><br><button class="fbtn on-red" onclick="syncZoho()" style="margin-top:4px">Try Again</button></div>';
+    h+='<div style="background:var(--red-dim);border:1px solid rgba(255,71,87,.35);border-radius:8px;padding:16px 18px">';
+    h+='<div style="color:var(--red);font-size:12px;margin-bottom:10px">⚠️ '+esc(S.error)+'</div>';
+    h+='<button class="fbtn on-red" onclick="syncZoho()">↻ Try Again</button></div>';
   } else if(!S.loaded){
-    h+='<div style="background:var(--amber-dim);border:1px solid rgba(255,176,32,.35);border-radius:8px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">';
-    h+='<div><span style="color:var(--amber);font-size:12px;font-weight:600">\u26a0 Zoho Books not synced</span><div style="color:var(--text2);font-size:11px;margin-top:3px">Load all your products and warehouse data</div></div>';
-    h+='<button class="fbtn on" onclick="syncZoho()">\u21bb Sync Now</button></div>';
+    h+='<div style="background:var(--amber-dim);border:1px solid rgba(255,176,32,.35);border-radius:8px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">';
+    h+='<div><div style="color:var(--amber);font-size:12px;font-weight:600">⚠️ Zoho Books not synced</div><div style="color:var(--text2);font-size:11px;margin-top:3px">Click Sync to load all your products and warehouse data</div></div>';
+    h+='<button class="fbtn on" onclick="syncZoho()">↻ Sync Now</button></div>';
   } else {
     h+='<div style="background:var(--teal-dim);border:1px solid rgba(0,229,195,.3);border-radius:8px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">';
-    h+='<div style="font-size:12px;color:var(--teal)">&#10003; Zoho Books live \u2014 <strong>'+S.items.length+' products</strong> across all warehouses</div>';
+    h+='<div style="font-size:12px;color:var(--teal)">✓ Zoho Books live — <strong>'+S.items.length+' products</strong> loaded</div>';
     h+='<div style="font-size:11px;color:var(--text2)">Synced: '+esc(S.lastSync)+'</div></div>';
   }
+
   DEMO_BB.filter(function(b){return !b.az||!b.nn}).slice(0,2).forEach(function(b){
-    h+='<div class="alert-bar"><div style="color:var(--red);flex-shrink:0">\u26a0</div><div><div style="line-height:1.5"><strong>'+esc(b.name)+'</strong> \u2014 Buy Box lost on <strong>'+esc(b.lostOn)+'</strong></div><div style="color:var(--text2);font-size:11px;margin-top:2px">'+esc(b.lost)+'</div></div></div>';
+    h+='<div class="alert-bar"><div style="color:var(--red);flex-shrink:0;margin-top:1px">⚠</div><div><div style="line-height:1.5"><strong>'+esc(b.name)+'</strong> — Buy Box lost on <strong>'+esc(b.lostOn)+'</strong></div><div style="color:var(--text2);font-size:11px;margin-top:2px">'+esc(b.lost)+'</div></div></div>';
   });
+
   h+='<div class="grid-5">';
-  h+='<div class="stat-card"><div class="stat-label">Amazon Buy Box</div><div class="stat-value" style="color:var(--teal)">'+azPct+'%</div><div class="stat-sub up">&#8593; 3% this week</div></div>';
-  h+='<div class="stat-card"><div class="stat-label">Noon Buy Box</div><div class="stat-value" style="color:var(--blue)">'+nnPct+'%</div><div class="stat-sub down">&#8595; 5% this week</div></div>';
+  h+='<div class="stat-card"><div class="stat-label">Amazon Buy Box</div><div class="stat-value" style="color:var(--teal)">'+azPct+'%</div><div class="stat-sub up">↑ 3% this week</div></div>';
+  h+='<div class="stat-card"><div class="stat-label">Noon Buy Box</div><div class="stat-value" style="color:var(--blue)">'+nnPct+'%</div><div class="stat-sub down">↓ 5% this week</div></div>';
   h+='<div class="stat-card"><div class="stat-label">Total Products</div><div class="stat-value">'+(S.loaded?S.items.length:"–")+'</div><div class="stat-sub">'+(S.loaded?"In Zoho Books":"Not synced")+'</div></div>';
   h+='<div class="stat-card"><div class="stat-label">Low / Out of Stock</div><div class="stat-value" style="color:var(--red)">'+(S.loaded?(low+out):"–")+'</div><div class="stat-sub down">'+(S.loaded?"Need attention":"Not synced")+'</div></div>';
   h+='<div class="stat-card"><div class="stat-label">Damaged Units</div><div class="stat-value" style="color:var(--amber)">'+(S.loaded?dmg:"–")+'</div><div class="stat-sub">'+(S.loaded?"WH-D / Renewed":"Not synced")+'</div></div>';
   h+='</div>';
+
   if(S.loaded){
     h+='<div class="card"><div class="card-title">Warehouse Stock Breakdown</div><div class="grid-4">';
-    var whs=[{l:"PRAGATI (Main)",v:whT.pragati,c:"var(--teal)",s:"Main sellable"},
-             {l:"Amazon FBA",v:whT.amazon,c:"#ff9900",s:"At Amazon"},
-             {l:"Noon FBN",v:whT.noon,c:"#d4c200",s:"At Noon"},
-             {l:"Microless FBM",v:whT.micro,c:"var(--blue)",s:"At Microless"}];
-    whs.forEach(function(w){
+    [{l:"PRAGATI (Main)",v:whT.pragati,c:"var(--teal)",s:"Main sellable stock"},
+     {l:"Amazon FBA",v:whT.amazon,c:"#ff9900",s:"Units at Amazon UAE"},
+     {l:"Noon FBN",v:whT.noon,c:"#d4c200",s:"Units at Noon"},
+     {l:"Microless FBM",v:whT.micro,c:"var(--blue)",s:"Units at Microless"}
+    ].forEach(function(w){
       h+='<div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:14px">';
       h+='<div style="font-size:10px;color:'+w.c+';margin-bottom:6px;text-transform:uppercase;letter-spacing:.8px">'+w.l+'</div>';
       h+='<div style="font-family:Syne,sans-serif;font-size:22px;font-weight:800;color:'+w.c+'">'+w.v.toLocaleString()+'</div>';
@@ -296,23 +424,44 @@ function renderOverview(){
     });
     h+='</div></div>';
   }
+
   h+='<div class="grid-2">';
-  h+='<div class="card"><div class="card-title">Buy Box % \u2014 Last 7 Days</div><div class="legend"><div class="leg"><div class="ldot" style="background:var(--teal)"></div>Amazon UAE</div><div class="leg"><div class="ldot" style="background:var(--blue)"></div>Noon</div></div>'+lineChart(BB_HIST,"az","nn","#00e5c3","#4d9fff")+'</div>';
-  h+='<div class="card"><div class="card-title">Revenue by Platform (AED)</div><div class="legend"><div class="leg"><div class="ldot" style="background:#ff9900"></div>Amazon UAE</div><div class="leg"><div class="ldot" style="background:#d4c200"></div>Noon</div></div>'+barChart(REV,"az","nn","#ff9900","#d4c200")+'</div>';
+  h+='<div class="card"><div class="card-title">Buy Box % — Last 7 Days</div><div class="legend"><div class="leg"><div class="ldot" style="background:var(--teal)"></div>Amazon UAE</div><div class="leg"><div class="ldot" style="background:var(--blue)"></div>Noon</div></div>'+lineChart(BB_HIST,"az","nn","#00e5c3","#4d9fff")+'</div>';
+  h+='<div class="card"><div class="card-title">Revenue by Platform (AED 000s)</div><div class="legend"><div class="leg"><div class="ldot" style="background:#ff9900"></div>Amazon UAE</div><div class="leg"><div class="ldot" style="background:#d4c200"></div>Noon</div></div>'+barChart(REV,"az","nn","#ff9900","#d4c200")+'</div>';
   return h+'</div></div>';
 }
 
 function renderStock(){
-  if(!S.loaded&&!S.loading)return'<div class="page"><div><div class="sh">Stock Replenishment</div></div><div class="card"><div class="empty"><div style="font-size:32px;margin-bottom:12px">&#128722;</div><div style="font-weight:600;color:var(--text);margin-bottom:8px">Connect Zoho Books</div><div style="margin-bottom:20px;color:var(--text2)">Load all your products with full warehouse breakdown</div><button class="ai-send" onclick="syncZoho()">\u21bb Sync Zoho Books</button></div></div></div>';
-  if(S.loading)return'<div class="page"><div><div class="sh">Stock Replenishment</div></div><div class="card"><div style="text-align:center;padding:32px"><div class="think" style="justify-content:center;margin-bottom:12px"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div><div style="font-family:Syne,sans-serif;font-size:15px;color:var(--teal);margin-bottom:8px">Loading all products...</div><div style="font-size:12px;color:var(--text2);margin-bottom:12px">'+S.progress+'% complete</div><div class="progress-bar" style="max-width:300px;margin:0 auto"><div class="progress-fill" style="width:'+S.progress+'%"></div></div></div></div></div>';
+  if(!S.loaded&&!S.loading){
+    return'<div class="page"><div><div class="sh">Stock Replenishment</div></div>'
+      +'<div class="card"><div class="empty"><div style="font-size:36px;margin-bottom:12px">🏬</div>'
+      +'<div style="font-weight:600;color:var(--text);margin-bottom:8px;font-family:Syne,sans-serif">Connect Zoho Books</div>'
+      +'<div style="margin-bottom:20px;color:var(--text2)">Load all your products with full warehouse breakdown</div>'
+      +'<button class="ai-send" onclick="syncZoho()">↻ Sync Zoho Books</button></div></div></div>';
+  }
+  if(S.loading){
+    return'<div class="page"><div><div class="sh">Stock Replenishment</div></div>'
+      +'<div class="card"><div style="text-align:center;padding:40px 20px">'
+      +'<div class="think" style="justify-content:center;margin-bottom:14px"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>'
+      +'<div style="font-family:Syne,sans-serif;font-size:16px;color:var(--teal);margin-bottom:8px">'+esc(S.progressMsg)+'</div>'
+      +'<div style="font-size:12px;color:var(--text2);margin-bottom:16px">Fetching every page until all products are loaded</div>'
+      +'<div class="progress-bar" style="max-width:360px;margin:0 auto"><div class="progress-fill" style="width:'+S.progress+'%"></div></div>'
+      +'</div></div></div>';
+  }
+
   var filtered=getFiltered();
-  var tp=Math.ceil(filtered.length/S.perPage),cp=Math.min(S.page,Math.max(1,tp));
+  var tp=Math.ceil(filtered.length/S.perPage)||1;
+  var cp=Math.min(S.page,tp);
   var pageItems=filtered.slice((cp-1)*S.perPage,cp*S.perPage);
   var out=S.items.filter(function(i){return i.sellable<=0}).length;
   var low=S.items.filter(function(i){return i.sellable>0&&i.sellable<5}).length;
   var good=S.items.filter(function(i){return i.sellable>=5}).length;
   var dmg=S.items.filter(function(i){return i.damage>0}).length;
-  var h='<div class="page"><div><div class="sh">Stock Replenishment</div><div class="ss">'+S.items.length+' products \u2014 synced '+esc(S.lastSync)+' \u2014 SuperMall excluded \u2014 damage tracked separately</div></div>';
+
+  var h='<div class="page">';
+  h+='<div><div class="sh">Stock Replenishment</div><div class="ss">'+S.items.length+' products synced at '+esc(S.lastSync)+' · SuperMall excluded · Damage tracked separately</div></div>';
+
+  // Stats
   h+='<div class="grid-5">';
   h+='<div class="stat-card"><div class="stat-label">Total</div><div class="stat-value">'+S.items.length+'</div><div class="stat-sub">Products</div></div>';
   h+='<div class="stat-card"><div class="stat-label">In Stock</div><div class="stat-value" style="color:var(--teal)">'+good+'</div><div class="stat-sub up">5+ units</div></div>';
@@ -320,46 +469,93 @@ function renderStock(){
   h+='<div class="stat-card"><div class="stat-label">Out of Stock</div><div class="stat-value" style="color:var(--red)">'+out+'</div><div class="stat-sub down">Zero units</div></div>';
   h+='<div class="stat-card"><div class="stat-label">Has Damage</div><div class="stat-value" style="color:var(--amber)">'+dmg+'</div><div class="stat-sub">WH-D / Renewed</div></div>';
   h+='</div>';
-  h+='<div class="card" style="padding:14px"><div class="filters-bar">';
-  h+='<input class="search-box" placeholder="&#128269; Search name or SKU..." value="'+esc(S.search)+'" oninput="setSearch(this.value)"/>';
-  h+='<span style="color:var(--text3);padding:0 2px">|</span>';
-  h+='<button class="fbtn'+(S.statusFilter==="all"?" on":"")+'" onclick="setStatusFilter(\'all\')">All</button>';
-  h+='<button class="fbtn'+(S.statusFilter==="good"?" on":"")+'" onclick="setStatusFilter(\'good\')">&#10003; In Stock</button>';
-  h+='<button class="fbtn'+(S.statusFilter==="low"?" on-amber":"")+'" onclick="setStatusFilter(\'low\')">\u26a0 Low</button>';
-  h+='<button class="fbtn'+(S.statusFilter==="out"?" on-red":"")+'" onclick="setStatusFilter(\'out\')">&#10007; Out</button>';
-  h+='<span style="color:var(--text3);padding:0 2px">|</span>';
-  h+='<button class="fbtn'+(S.whFilter==="all"?" on":"")+'" onclick="setWHFilter(\'all\')">All WH</button>';
-  h+='<button class="fbtn'+(S.whFilter==="pragati"?" on":"")+'" onclick="setWHFilter(\'pragati\')">PRAGATI</button>';
-  h+='<button class="fbtn'+(S.whFilter==="amazon"?" on-amazon":"")+'" onclick="setWHFilter(\'amazon\')">Amazon FBA</button>';
-  h+='<button class="fbtn'+(S.whFilter==="noon"?" on-noon":"")+'" onclick="setWHFilter(\'noon\')">Noon FBN</button>';
-  h+='<button class="fbtn'+(S.whFilter==="micro"?" on-blue":"")+'" onclick="setWHFilter(\'micro\')">Microless</button>';
-  h+='<button class="fbtn'+(S.whFilter==="damage"?" on-red":"")+'" onclick="setWHFilter(\'damage\')">Damage</button>';
-  h+='<button class="fbtn" onclick="syncZoho()" style="margin-left:auto">\u21bb Refresh</button>';
-  h+='</div><div style="font-size:11px;color:var(--text2);margin-top:8px">Showing '+filtered.length+' of '+S.items.length+' products</div></div>';
-  h+='<div class="card"><div class="table-wrap"><table>';
-  h+='<thead><tr><th>#</th><th>Product Name</th><th>SKU</th><th>Sellable</th><th>Warehouses</th><th>Damage</th><th>Rate</th><th>Status</th></tr></thead><tbody>';
-  if(pageItems.length===0){h+='<tr><td colspan="8" style="text-align:center;color:var(--text2);padding:30px">No products match your filters</td></tr>';}
-  else{pageItems.forEach(function(item,idx){
-    var q=item.sellable,pct=Math.min(100,(q/50)*100),fc=q<=0?"var(--red)":q<5?"var(--amber)":"var(--teal)";
-    h+='<tr><td style="color:var(--text3);font-size:11px">'+((cp-1)*S.perPage+idx+1)+'</td>';
-    h+='<td><div style="font-weight:500;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+esc(item.name)+'">'+esc(item.name)+'</div></td>';
-    h+='<td style="color:var(--text2);font-size:11px">'+esc(item.sku)+'</td>';
-    h+='<td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:'+pct+'%;background:'+fc+'"></div></div><span style="color:'+fc+';font-size:12px;font-weight:600">'+q+'</span></div></td>';
-    h+='<td>'+whPills(item)+'</td>';
-    h+='<td>'+(item.damage>0?'<span class="badge b-amber">'+item.damage+'</span>':'<span style="color:var(--text3)">–</span>')+'</td>';
-    h+='<td style="color:var(--text2)">'+(item.rate>0?"AED "+item.rate.toLocaleString():"–")+'</td>';
-    h+='<td>'+stockBadge(q)+'</td></tr>';
-  });}
+
+  // ── FILTERS ──
+  h+='<div class="filters-section">';
+
+  // Row 1: Search + Sort
+  h+='<div class="filter-row">';
+  h+='<div class="search-wrap"><span class="search-icon">🔍</span><input type="text" placeholder="Search by product name or SKU..." value="'+esc(S.search)+'" oninput="setSearch(this.value)"/></div>';
+  h+='<div style="display:flex;align-items:center;gap:6px;margin-left:auto">';
+  h+='<span style="font-size:11px;color:var(--text2)">Sort by:</span>';
+  h+='<select class="sort-select" onchange="setSortBy(this.value)">';
+  [{v:"name",l:"Name A–Z"},{v:"sellable",l:"Stock"},{v:"rate",l:"Price"},{v:"damage",l:"Damage"},{v:"sku",l:"SKU"}].forEach(function(o){
+    h+='<option value="'+o.v+'"'+(S.sortBy===o.v?" selected":"")+'>'+o.l+'</option>';
+  });
+  h+='</select>';
+  h+='<button class="fbtn'+(S.sortDir==="asc"?" on":"")+'" onclick="toggleSortDir()" title="Toggle sort direction">'+(S.sortDir==="asc"?"↑ Asc":"↓ Desc")+'</button>';
+  h+='<button class="fbtn" onclick="syncZoho()" style="margin-left:4px">↻ Refresh</button>';
+  h+='</div></div>';
+
+  // Row 2: Status filter
+  h+='<div class="filter-row"><span class="filter-label">Status:</span>';
+  h+='<button class="fbtn'+(S.statusFilter==="all"?" on":"")+'" onclick="setStatusFilter(\'all\')">All ('+S.items.length+')</button>';
+  h+='<button class="fbtn'+(S.statusFilter==="good"?" on":"")+'" onclick="setStatusFilter(\'good\')">✓ In Stock ('+good+')</button>';
+  h+='<button class="fbtn'+(S.statusFilter==="low"?" on-amber":"")+'" onclick="setStatusFilter(\'low\')">⚠ Low Stock ('+low+')</button>';
+  h+='<button class="fbtn'+(S.statusFilter==="out"?" on-red":"")+'" onclick="setStatusFilter(\'out\')">✗ Out of Stock ('+out+')</button>';
+  h+='</div>';
+
+  // Row 3: Warehouse filter
+  h+='<div class="filter-row"><span class="filter-label">Warehouse:</span>';
+  h+='<button class="fbtn'+(S.whFilter==="all"?" on":"")+'" onclick="setWHFilter(\'all\')">All Warehouses</button>';
+  h+='<button class="fbtn'+(S.whFilter==="pragati"?" on":"")+'" onclick="setWHFilter(\'pragati\')">🏭 PRAGATI</button>';
+  h+='<button class="fbtn'+(S.whFilter==="amazon"?" on-amazon":"")+'" onclick="setWHFilter(\'amazon\')">📦 Amazon FBA</button>';
+  h+='<button class="fbtn'+(S.whFilter==="noon"?" on-noon":"")+'" onclick="setWHFilter(\'noon\')">🏪 Noon FBN</button>';
+  h+='<button class="fbtn'+(S.whFilter==="micro"?" on-blue":"")+'" onclick="setWHFilter(\'micro\')">💻 Microless FBM</button>';
+  h+='<button class="fbtn'+(S.whFilter==="damage"?" on-red":"")+'" onclick="setWHFilter(\'damage\')">⚠ Damage Only</button>';
+  h+='</div>';
+
+  // Results summary
+  h+='<div class="results-info">';
+  h+='<span>Showing <strong>'+filtered.length+'</strong> of '+S.items.length+' products'+(S.search?' matching "'+esc(S.search)+'"':"")+'</span>';
+  h+='<span>Page '+cp+' of '+tp+' · '+S.perPage+' per page</span>';
+  h+='</div>';
+  h+='</div>'; // end filters-section
+
+  // Table
+  h+='<div class="card" style="padding:0"><div class="table-wrap"><table>';
+  h+='<thead><tr>';
+  h+='<th style="width:40px;cursor:default">#</th>';
+  h+=thSort("name","Product Name");
+  h+=thSort("sku","SKU");
+  h+=thSort("sellable","Sellable");
+  h+='<th style="cursor:default">Warehouses</th>';
+  h+=thSort("damage","Damage");
+  h+=thSort("rate","Rate (AED)");
+  h+='<th style="cursor:default">Status</th>';
+  h+='</tr></thead><tbody>';
+
+  if(pageItems.length===0){
+    h+='<tr><td colspan="8" style="text-align:center;color:var(--text2);padding:40px">No products match your filters. <button class="fbtn" onclick="clearFilters()" style="margin-left:8px">Clear all filters</button></td></tr>';
+  } else {
+    pageItems.forEach(function(item,idx){
+      var q=item.sellable;
+      var pct=Math.min(100,(q/50)*100);
+      var fc=q<=0?"var(--red)":q<5?"var(--amber)":q<20?"var(--blue)":"var(--teal)";
+      h+='<tr>';
+      h+='<td style="color:var(--text3);font-size:11px">'+((cp-1)*S.perPage+idx+1)+'</td>';
+      h+='<td><div style="font-weight:500;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+esc(item.name)+'">'+esc(item.name)+'</div></td>';
+      h+='<td style="color:var(--text2);font-size:11px;white-space:nowrap">'+esc(item.sku||"–")+'</td>';
+      h+='<td><div class="sbar-wrap"><div class="sbar"><div class="sbar-fill" style="width:'+pct+'%;background:'+fc+'"></div></div><span style="color:'+fc+';font-size:12px;font-weight:600;min-width:24px">'+q+'</span></div></td>';
+      h+='<td>'+whPills(item)+'</td>';
+      h+='<td>'+(item.damage>0?'<span class="badge b-amber">'+item.damage+'</span>':'<span style="color:var(--text3)">–</span>')+'</td>';
+      h+='<td style="color:var(--text2);white-space:nowrap">'+(item.rate>0?"AED "+item.rate.toLocaleString():"–")+'</td>';
+      h+='<td>'+stockBadge(q)+'</td>';
+      h+='</tr>';
+    });
+  }
   h+='</tbody></table></div>';
+
+  // Pagination
   if(tp>1){
     h+='<div class="pagination">';
-    h+='<button class="page-btn" onclick="setPage('+(cp-1)+')" '+(cp<=1?"disabled":"")+'>&#8592;</button>';
+    h+='<button class="page-btn" onclick="setPage('+(cp-1)+')" '+(cp<=1?"disabled":"")+'>‹ Prev</button>';
     var sp=Math.max(1,cp-2),ep=Math.min(tp,cp+2);
-    if(sp>1)h+='<button class="page-btn" onclick="setPage(1)">1</button>'+(sp>2?'<span style="color:var(--text3)">…</span>':"");
+    if(sp>1){h+='<button class="page-btn" onclick="setPage(1)">1</button>';if(sp>2)h+='<span style="color:var(--text3);padding:0 4px">…</span>';}
     for(var pg=sp;pg<=ep;pg++)h+='<button class="page-btn'+(pg===cp?" active":"")+'" onclick="setPage('+pg+')">'+pg+'</button>';
-    if(ep<tp)h+=(ep<tp-1?'<span style="color:var(--text3)">…</span>':"")+'<button class="page-btn" onclick="setPage('+tp+')">'+tp+'</button>';
-    h+='<button class="page-btn" onclick="setPage('+(cp+1)+')" '+(cp>=tp?"disabled":"")+'>&#8594;</button>';
-    h+='<span class="page-info">Page '+cp+'/'+tp+' &nbsp;|&nbsp; '+filtered.length+' results</span>';
+    if(ep<tp){if(ep<tp-1)h+='<span style="color:var(--text3);padding:0 4px">…</span>';h+='<button class="page-btn" onclick="setPage('+tp+')">'+tp+'</button>';}
+    h+='<button class="page-btn" onclick="setPage('+(cp+1)+')" '+(cp>=tp?"disabled":"")+'>Next ›</button>';
+    h+='<span class="page-info">Page '+cp+'/'+tp+' · '+filtered.length+' results</span>';
     h+='</div>';
   }
   return h+'</div></div>';
@@ -373,29 +569,40 @@ function renderBuyBox(){
     rows+='<td style="color:'+(b.az?"var(--teal)":"var(--text)")+'">AED '+b.azP.toLocaleString()+'</td>';
     rows+='<td><div style="display:flex;align-items:center;gap:6px;font-size:12px"><div style="width:8px;height:8px;border-radius:50%;background:'+(b.nn?"var(--teal)":"var(--red)")+';box-shadow:0 0 6px '+(b.nn?"var(--teal)":"var(--red)")+'"></div><span style="color:'+(b.nn?"var(--teal)":"var(--red)")+'">'+(b.nn?"Holding":"Lost")+'</span></div></td>';
     rows+='<td style="color:'+(b.nn?"var(--teal)":"var(--text)")+'">AED '+b.nnP.toLocaleString()+'</td>';
-    rows+='<td>'+(b.lost?'<span style="color:var(--red);font-size:11px">\uD83D\uDD34 '+esc(b.lost)+'</span>':'<span style="color:var(--text3)">–</span>')+'</td></tr>';
+    rows+='<td>'+(b.lost?'<span style="color:var(--red);font-size:11px">🔴 '+esc(b.lost)+'</span>':'<span style="color:var(--text3)">–</span>')+'</td></tr>';
   });
-  return'<div class="page"><div><div class="sh">Buy Box Monitor</div><div class="ss">Amazon UAE &amp; Noon \u2014 Amazon SP-API coming in Phase 3</div></div>'
-    +'<div style="background:var(--amber-dim);border:1px solid rgba(255,176,32,.3);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--amber)">\u26a0 Sample data shown. Real live buy box data connects in the next phase.</div>'
+  return'<div class="page"><div><div class="sh">Buy Box Monitor</div><div class="ss">Amazon UAE & Noon · Amazon SP-API connects in Phase 3</div></div>'
+    +'<div style="background:var(--amber-dim);border:1px solid rgba(255,176,32,.3);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--amber)">⚠ Sample data shown. Real live buy box connects in the next phase.</div>'
     +'<div class="card"><div class="table-wrap"><table><thead><tr><th>Product</th><th>Amazon UAE</th><th>Price</th><th>Noon</th><th>Price</th><th>Lost At</th></tr></thead><tbody>'+rows+'</tbody></table></div></div></div>';
 }
 
 function renderAI(){
   var ctx=S.loaded
-    ?"REAL INVENTORY ("+S.items.length+" products):\nOut of stock: "+S.items.filter(function(i){return i.sellable<=0}).length+"\nLow stock (1-4): "+S.items.filter(function(i){return i.sellable>0&&i.sellable<5}).length+"\nWith damage: "+S.items.filter(function(i){return i.damage>0}).length+"\n\nSample (first 20):\n"+S.items.slice(0,20).map(function(i){return"- "+i.name+" | SKU:"+i.sku+" | Sellable:"+i.sellable+" | FBA:"+i.amazon+" | FBN:"+i.noon+" | PRAGATI:"+i.pragati+" | Damage:"+i.damage}).join("\n")
+    ?"REAL INVENTORY ("+S.items.length+" products from Zoho Books):\n"
+      +"Out of stock: "+S.items.filter(function(i){return i.sellable<=0}).length+"\n"
+      +"Low stock (1-4): "+S.items.filter(function(i){return i.sellable>0&&i.sellable<5}).length+"\n"
+      +"With damage: "+S.items.filter(function(i){return i.damage>0}).length+"\n\n"
+      +"Sample products (first 20):\n"
+      +S.items.slice(0,20).map(function(i){return"- "+i.name+" ("+i.sku+") | Sellable: "+i.sellable+" | FBA: "+i.amazon+" | FBN: "+i.noon+" | PRAGATI: "+i.pragati+" | Damage: "+i.damage}).join("\n")
     :"Zoho not synced yet.";
-  window._SYS="You are an expert e-commerce consultant for Amazon UAE and Noon in Dubai.\n\n"+ctx+"\n\nWarehouses: PRAGATI=main stock, FBA=Amazon, FBN=Noon, FBM=Microless, WH-D/Renewed=damaged(excluded from sellable), SuperMall=excluded(reserved).\n\nGive specific actionable advice. Reference product names. Use bullet points.";
-  return'<div class="page"><div><div class="sh">AI Business Insights</div><div class="ss">'+(S.loaded?"Using your real "+S.items.length+" product inventory":"Sync Zoho first for real insights")+'</div></div>'
-    +'<div class="card"><div class="card-title">&#9889; Quick Analysis</div>'
+  window._SYS="You are an expert e-commerce consultant for Amazon UAE and Noon in Dubai, UAE.\n\n"+ctx+"\n\nWarehouses: PRAGATI=main sellable stock, FBA=Amazon fulfillment, FBN=Noon fulfillment, FBM=Microless, WH-D/Renewed=damaged stock (NOT counted as sellable), SuperMall=excluded (reserved stock).\n\nGive specific actionable advice. Reference product names and real numbers. Use bullet points. Be concise.";
+  return'<div class="page"><div><div class="sh">AI Business Insights</div><div class="ss">'+(S.loaded?"Powered by your real "+S.items.length+" product inventory":"Sync Zoho Books first for real data-driven insights")+'</div></div>'
+    +'<div class="card"><div class="card-title">⚡ Quick Analysis</div>'
     +'<div class="qbtns">'
-    +'<button class="qbtn" onclick="askAI(\'Which products are critically low or out of stock?\')">Critical stock alerts</button>'
-    +'<button class="qbtn" onclick="askAI(\'Which products have damage stock in WH-D I should action?\')">Damage stock advice</button>'
-    +'<button class="qbtn" onclick="askAI(\'Which products at FBA or FBN are running low?\')">FBA / FBN low stock</button>'
-    +'<button class="qbtn" onclick="askAI(\'What are my top priorities this week?\')">Weekly priorities</button>'
-    +'<button class="qbtn" onclick="askAI(\'Which products should I move from PRAGATI to FBA or FBN?\')">Stock transfer advice</button>'
+    +'<button class="qbtn" onclick="askAI(\'Which products are critically low or out of stock and need urgent restocking?\')">Critical stock alerts</button>'
+    +'<button class="qbtn" onclick="askAI(\'Which products have damage stock in WH-D that I should write off, repackage or return?\')">Damage stock advice</button>'
+    +'<button class="qbtn" onclick="askAI(\'Which products at FBA or FBN are running low and need replenishment from PRAGATI?\')">FBA / FBN replenishment</button>'
+    +'<button class="qbtn" onclick="askAI(\'What are my top 5 priorities this week to improve sales?\')">Weekly priorities</button>'
+    +'<button class="qbtn" onclick="askAI(\'Which products should I send from PRAGATI to Amazon FBA or Noon FBN?\')">Stock transfer plan</button>'
     +'</div>'
-    +'<div class="ai-bar"><input class="ai-inp" id="aiInp" placeholder="Ask anything about your inventory, pricing, or strategy..." onkeydown="if(event.key===\'Enter\')askAI()"/><button class="ai-send" id="aiSend" onclick="askAI()">Ask AI \u2192</button></div>'
-    +'<div id="aiOut"><div class="empty"><div style="font-size:26px;margin-bottom:8px">\uD83E\uDD16</div><div>'+(S.loaded?"Real inventory loaded — ask anything about your <strong>"+S.items.length+" products</strong>":"Sync Zoho Books first for AI powered by your real data")+'</div></div></div></div></div>';
+    +'<div class="ai-bar">'
+    +'<input class="ai-inp" id="aiInp" placeholder="Ask anything about your inventory, pricing, or sales strategy..." onkeydown="if(event.key===\'Enter\')askAI()"/>'
+    +'<button class="ai-send" id="aiSend" onclick="askAI()">Ask AI →</button>'
+    +'</div>'
+    +'<div id="aiOut"><div class="empty"><div style="font-size:28px;margin-bottom:10px">🤖</div>'
+    +(S.loaded?'<div>Real inventory loaded! Ask anything about your <strong>'+S.items.length+' products</strong></div>'
+    :'<div>Sync Zoho Books first for AI insights powered by your real data</div>')
+    +'</div></div></div></div>';
 }
 
 async function askAI(q){
@@ -406,37 +613,55 @@ async function askAI(q){
   out.innerHTML='<div class="think"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div><span style="margin-left:8px">Analysing your data...</span></div>';
   if(btn)btn.disabled=true;
   try{
-    var res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},
+    var r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},
       body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,system:window._SYS||"You are an e-commerce consultant.",messages:[{role:"user",content:query}]})});
-    var data=await res.json();
-    var text=(data.content||[]).map(function(b){return b.text||""}).join("")||"No response.";
+    var d=await r.json();
+    var text=(d.content||[]).map(function(b){return b.text||""}).join("")||"No response received.";
     out.innerHTML='<div class="ai-resp">'+text.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")+'</div>';
-  }catch(e){out.innerHTML='<div class="ai-resp" style="border-left-color:var(--red)">\u26a0 Could not reach AI.</div>';}
+  }catch(e){out.innerHTML='<div class="ai-resp" style="border-left-color:var(--red)">⚠ Could not reach AI: '+esc(e.message)+'</div>';}
   if(btn)btn.disabled=false;
 }
 
-// ── RENDER ────────────────────────────────────────────────────────────────────
+// ── MAIN RENDER ───────────────────────────────────────────────────────────────
 function render(){
   var lc=DEMO_BB.filter(function(b){return !b.az||!b.nn}).length;
-  var stockBadgeCount=S.loaded?S.items.filter(function(i){return i.sellable<5}).length:0;
-  var tabs=[{id:"overview",l:"Overview",icon:"&#9672;"},{id:"buybox",l:"Buy Box",icon:"&#11041;",badge:lc},{id:"stock",l:"Stock",icon:"&#11042;",badge:stockBadgeCount},{id:"ai",l:"AI Insights",icon:"&#10022;"}];
-  var nav=tabs.map(function(t){return'<div class="nav-tab'+(S.tab===t.id?" active":"")+'" onclick="goTab(\''+t.id+'\')">'+'<span>'+t.icon+'</span><span>'+t.l+'</span>'+(t.badge>0?'<span class="nav-badge">'+t.badge+'</span>':"")+'</div>';}).join("");
+  var stockAlerts=S.loaded?S.items.filter(function(i){return i.sellable<5}).length:0;
+  var tabs=[
+    {id:"overview",l:"Overview",icon:"◆"},
+    {id:"buybox",l:"Buy Box",icon:"⬡",badge:lc},
+    {id:"stock",l:"Stock",icon:"⬢",badge:stockAlerts},
+    {id:"ai",l:"AI Insights",icon:"✦"}
+  ];
+  var nav=tabs.map(function(t){
+    return'<div class="nav-tab'+(S.tab===t.id?" active":"")+'" onclick="goTab(\''+t.id+'\')"><span>'+t.icon+'</span><span>'+t.l+'</span>'+(t.badge>0?'<span class="nav-badge">'+t.badge+'</span>':"")+'</div>';
+  }).join("");
   var page="";
-  if(S.tab==="overview")page=renderOverview();
-  if(S.tab==="buybox")page=renderBuyBox();
-  if(S.tab==="stock")page=renderStock();
-  if(S.tab==="ai")page=renderAI();
-  var syncLabel=S.loading?"Loading "+S.progress+"%...":(S.loaded?"\u21bb Synced "+esc(S.lastSync):"\u21bb Sync Zoho");
+  if(S.tab==="overview") page=renderOverview();
+  if(S.tab==="buybox")   page=renderBuyBox();
+  if(S.tab==="stock")    page=renderStock();
+  if(S.tab==="ai")       page=renderAI();
+  var syncLabel=S.loading?"Loading "+S.progress+"%...":(S.loaded?"↻ Synced "+esc(S.lastSync):"↻ Sync Zoho");
   document.getElementById("app").innerHTML=
-    '<header class="header"><div class="header-inner"><div class="logo">Shelf<span>IQ</span></div><div class="header-right"><button class="sync-btn" onclick="syncZoho()" '+(S.loading?"disabled":"")+'>'+syncLabel+'</button><div class="alert-pill"><div class="pulse"></div>'+lc+' Buy Box Alerts</div></div></div></header>'
+    '<header class="header"><div class="header-inner"><div class="logo">Shelf<span>IQ</span></div>'
+    +'<div class="header-right">'
+    +'<button class="sync-btn" onclick="syncZoho()" '+(S.loading?"disabled":"")+'>'+syncLabel+'</button>'
+    +'<div class="alert-pill"><div class="pulse"></div>'+lc+' Buy Box Alerts</div>'
+    +'</div></div></header>'
     +'<nav class="nav"><div class="nav-inner">'+nav+'</div></nav>'
     +'<main class="main">'+page+'</main>';
 }
+
+// ── ACTIONS ───────────────────────────────────────────────────────────────────
 function goTab(t){S.tab=t;render()}
 function setSearch(v){S.search=v;S.page=1;render()}
 function setWHFilter(f){S.whFilter=f;S.page=1;render()}
 function setStatusFilter(f){S.statusFilter=f;S.page=1;render()}
-function setPage(p){var f=getFiltered();var tp=Math.ceil(f.length/S.perPage);S.page=Math.max(1,Math.min(p,tp));render()}
+function setSortBy(f){S.sortBy=f;S.page=1;render()}
+function toggleSortDir(){S.sortDir=S.sortDir==="asc"?"desc":"asc";S.page=1;render()}
+function setSort(f){if(S.sortBy===f){toggleSortDir();}else{S.sortBy=f;S.sortDir="asc";S.page=1;render();}}
+function setPage(p){var f=getFiltered();var tp=Math.ceil(f.length/S.perPage)||1;S.page=Math.max(1,Math.min(p,tp));render()}
+function clearFilters(){S.search="";S.whFilter="all";S.statusFilter="all";S.page=1;render()}
+
 render();
 </script>
 </body>
